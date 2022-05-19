@@ -1,0 +1,235 @@
+%\documentclass[12pt]{article}
+\documentclass[12pt]{scrartcl}
+\title{Loop notes}
+\nonstopmode
+%\usepackage[utf-8]{inputenc}
+\usepackage{graphicx} % Required for including pictures
+\usepackage[figurename=Figure]{caption}
+\usepackage{float}    % For tables and other floats
+\usepackage{verbatim} % For comments and other
+\usepackage{amsmath}  % For math
+\usepackage{amssymb}  % For more math
+\usepackage{fullpage} % Set margins and place page numbers at bottom center
+\usepackage{paralist} % paragraph spacing
+\usepackage{listings} % For source code
+\usepackage{subfig}   % For subfigures
+%\usepackage{physics}  % for simplified dv, and 
+\usepackage{enumitem} % useful for itemization
+\usepackage{siunitx}  % standardization of si units
+\usepackage{amssymb}
+\usepackage{bbold}
+\usepackage{tikz,bm} % Useful for drawing plots
+%\usepackage{tikz-3dplot}
+\usepackage{circuitikz}
+\usepackage{slashed}
+\usepackage{amsfonts}
+\usepackage{todonotes}
+
+
+\DeclareMathOperator{\Tr}{Tr}
+
+%%% Colours used in field vectors and propagation direction
+\definecolor{mycolor}{rgb}{1,0.2,0.3}
+\definecolor{brightgreen}{rgb}{0.4, 1.0, 0.0}
+\definecolor{britishracinggreen}{rgb}{0.0, 0.26, 0.15}
+\definecolor{cadmiumgreen}{rgb}{0.0, 0.42, 0.24}
+\definecolor{ceruleanblue}{rgb}{0.16, 0.32, 0.75}
+\definecolor{darkelectricblue}{rgb}{0.33, 0.41, 0.47}
+\definecolor{darkpowderblue}{rgb}{0.0, 0.2, 0.6}
+\definecolor{darktangerine}{rgb}{1.0, 0.66, 0.07}
+\definecolor{emerald}{rgb}{0.31, 0.78, 0.47}
+\definecolor{palatinatepurple}{rgb}{0.41, 0.16, 0.38}
+\definecolor{pastelviolet}{rgb}{0.8, 0.6, 0.79}
+\begin{document}
+
+\begin{center}
+	\hrule
+	\vspace{.4cm}
+	{\textbf { \large $\mathcal{N}$ = 4 SYM Loop Notes}}
+\end{center}
+{\textbf{Name:}\ Alexander Boccaletti \hspace{\fill} \textbf{Updated Date: 18.05.2022}    \\
+{ \textbf{KU ID:}} \ bct232 \hspace{\fill} \textbf{Supervisor}:\space Chi Zhang \\
+	\hrule
+
+\paragraph*{1 loop review} 
+Let's consider a general $1$-loop amplitude $\mathcal{A}_n^1$ with $n$ external momenta $p_i^{\mu}$ ($i=1,...,n$)
+\begin{align}
+    \mathcal{A}_n^1 = \mathcal{A}_n^1(p_1,...,p_n)
+\end{align}
+where the $n$ external momenta have the constraints
+\begin{align}
+    p_i^{\mu}p_{\mu ,i} = p_i^2 = 0
+\end{align}
+\begin{align}
+    \sum_i p_i^{\mu} = 0
+\end{align}
+$\forall i=1,...,n$
+Namely, (2) is the "on-shell" condition and (3) is the "conservation of momentum" relation.
+We can trivially satisfy (3) by introducing dual Minkowski coordinates (region variables) $x_i^{\mu}$ with $(i=1,...,n)$ such that
+\begin{align}
+    p_i^{\mu} = x_i^{\mu} - x_{i-1}^{\mu} = x_{i,i-1}^{\mu}
+\end{align}
+with $p_1 = x_1 - x_n$. We exploit the isomorphism of the Lie-algebras $\mathfrak{so}(3,1) \simeq \mathfrak{so}(4,2)$\todo{correct.} to map an arbitrary $x_i^{\mu}$ to 6-d projective light cone
+\begin{align}
+    x_i^{\mu} \to X_i^A =(X^{+},X^{-},X^{\mu}) = (1,x^2,x_i^{\mu})
+\end{align}
+On this projective light cone we use projective coordinates $X^A$ $(A=1,...,6)$, where the scalar product on the light cone is
+\begin{align}
+    X^AX_A = \eta_{AB}X^AX^B = -X^+X^- + (X^1)^2  + (X^2)^2 + (X^3)^2 + (X^4)^2
+\end{align}
+where $X^+ = X^0 + X^1$ and $X^- = X^0 - X^1$ \todo{correct}
+Thus, we have embedded the loop amplitude problem into 6-d projective space $SO(4,2)$.
+On this projective space we have the light-cone invariant \todo{correct}
+\begin{align}
+    X^2=0 \quad (X_{i}\cdot X_{j})
+\end{align}
+Hence, due to the embedding we can express the following relation between dual Minkowski and projective coordinates
+\begin{align}
+    (x_i - x_j)^2 = (X_i - X_j)^2 = (X_i)^2 + (X_j)^2 - 2X_iX_j = - 2X_iX_j
+\end{align}
+It is therefore convenient to introduce the product on the projective space
+\begin{align}
+    (X_i,X_j) = - 2X_iX_j = (x_i - x_j)^2 
+\end{align}
+More importantly, we can therefore express products of momenta as products defined on the 6-d light cone projective space. For example, taking 4-momenta $p_1^{\mu}$
+\begin{align}
+    p_2^2 = 0 \mapsto x_{21}^2 = (x_2 -x_1)^2 = 0 \mapsto (X_2,X_1) = 0
+\end{align}
+Due to the on-shell constraint, we obtain the relations
+\begin{align}
+    (X_i,X_{i+1}) = (X_i,X_{i-1}) = 0
+\end{align}
+Similarly, for a variable momentum $l$ we can assign a dual Minkowski variable $x_0$ as $l = x_0 - x_4$ (to ensure momentum conservation). To the dual Minkowski representation of the loop momentum we then assign then a 6-d light cone coordinate, as previously. Thus, we map the products as
+\begin{align}
+    l^2 \mapsto x_{04}^2 \mapsto (X_0,X_4)
+\end{align}
+Generally, 
+\begin{align}
+    l_i^2 \mapsto (x_0 - x_i)^2 = x_{0i}^2 \mapsto (X_0,X_i)
+\end{align}
+Given this embedding, we can express Feynman-integrals on the 6-d light cone projective space. The most general 1-loop $n$-point integral has the structure
+\begin{align}
+    I_n = \int \frac{d^4l P(l)}{D_1D_2\cdot \cdot\cdot D_n}
+\end{align}
+with propagators $D_1,...,D_n$, which for on shell external momenta exhibits conformal symmetry. Thus, due to the embedding formalism we can use a manifestly conformal representation of the 1-loop integral with a conformal integral defined on $SO(4,2)$. \newline
+\newline
+\textbf{n=4 (box) 1-loop scalar integral}
+The amplitude has the structure 
+\begin{align}
+    \mathcal{A}_4^1 = \mathcal{A}_4^1(p_1,p_2,p_3,p_4)
+\end{align}
+and arises at the first quantum correction of the 4-point interaction.
+\begin{align}
+    I_4 = \int d^4l f(l) =  \int \frac{d^4l}{l^2(l-p_1)^2(l-p_1-p_2)^2(l+p_4)^2}
+\end{align}
+By transforming to dual Minkowski coordinates, we obtain an integal in the $x_0$ variable (the transformation is linear so has unit Jacobian)
+\begin{align}
+    \int d^4l \mapsto \int d^4x_0  
+\end{align}
+
+\begin{align}
+    \Rightarrow I_4 = \int \frac{d^4x_0}{x_{01}^2x_{02}^2x_{03}^2x_{04}^2} 
+\end{align}
+\todo{check the conformal invariance in 4-dim}
+
+
+We can now embed the integral in the 6-d light cone projective space. The conformal integal measure ($X_0^2 =0$) is
+\begin{align}
+    \int d^4x_0 \mapsto \int \frac{d^6X_0\delta(X_0^2)}{Vol(GL(1))}
+\end{align}
+Therefore, we can with (18) express any loop integral with conformal coordinates
+\begin{align}
+    \int d^4l f(l) = \int d^4x_0 f(x_0) = \int \frac{d^6X_0\delta(X_0^2)}{Vol(GL(1))} f(X_0)
+\end{align}
+Consequently, the 4-pt box scalar integral after embedding in 6-d light cone projective space takes the form
+\begin{align}
+    I_4 = \int d^4lf(l)= \int \frac{d^4x_0}{x_{01}^2x_{02}^2x_{03}^2x_{04}^2} = \int \frac{d^6X_0\delta(X_0^2)}{Vol(GL(1))}\frac{1}{(X_1,X_0)(X_2,X_0)(X_3,X_0)(X_4,X_0)}
+\end{align}
+So the integral has the structure
+\begin{align}
+    I_4 = \int \frac{d^6X_0\delta(X_0^2)}{Vol(GL(1))}f(X_0)
+\end{align}
+Clearly, the integral is invariant under dilation $X_0 \to \lambda X_0$
+\begin{align}
+    \int \frac{\lambda^6 d^6X_0\delta(\lambda X_0^2)}{Vol(GL(1))}f(\lambda X_0) = \int  \frac{d^6X_0\delta(X_0^2)}{Vol(GL(1))}\frac{\lambda^4}{\lambda^4 (X_1,X_0)(X_2,X_0)(X_3,X_0)(X_4,X_0)}
+\end{align}
+\begin{align}
+    \implies \int \frac{\lambda^6 d^6X_0\delta(\lambda X_0^2)}{Vol(GL(1))}f(\lambda X_0) = \int \frac{d^6X_0\delta(X_0^2)}{Vol(GL(1))}f(X_0) 
+\end{align}
+Furthermore, the integral is invariant under inversion $X_0 \to \frac{X_0}{x^2}$. \todo{correct}
+\begin{align}
+     \int \frac{ d^6X_0\delta(\frac{X_0^2}{x^4})}{x^{12}\cdot Vol(GL(1))}f(\frac{X_0}{x^2}) = \int  \frac{d^6X_0\delta(X_0^2)}{Vol(GL(1))}\frac{x^8}{x^{8}\cdot (X_1,X_0)(X_2,X_0)(X_3,X_0)(X_4,X_0)}
+\end{align}
+\begin{align}
+    \implies \int \frac{ d^6X_0\delta(\frac{X_0^2}{x^4})}{x^{12}\cdot Vol(GL(1))}f(\frac{X_0}{x^2}) = \int \frac{d^6X_0\delta(X_0^2)}{Vol(GL(1))}f(X_0) 
+\end{align}
+So by embedding the integral in 6-d projective space, we have made the conformal invariance manifest. In other words, we have found a more natural representation that explicitly exhibits the conformal symmetry of the loop integral considered. For planar theories, we can decompose $n > 4$ loop integrals to a basis of the 4-point integrals discussed in this section. This basis decomposition of the integrand is possible because we have embedded the problem in a 6-d projective space, in which we can decompose a general object to 6 base elements with the appropriate coefficients. Since we are in 6-d, we can hence write an arbitrary $SO(4,2) \ni W$ as
+\begin{align}
+    W = c_1X_1 + c_2X_2 + c_3X_3 + c_4X_4 + c_5X_5 +rR
+\end{align}
+with $(X_i,R) = 0$ and $(R,R) = 1$. We can also define an anti-symmetric product on $SO(4,2)$ with
+\begin{align}
+    \langle X_iX_jX_kX_lX_mX_p \rangle = \epsilon^{ABCDFG}X_{iA}X_{jB}X_{kC}X_{lD}X_{mF}X_{pG}
+\end{align}
+where $\epsilon^{ABCDFG}$ is the totally anti-symmetric tensor.
+
+
+\textbf{n=5 (pentagonal) 1-loop scalar integral}
+Let's consider a general 5-point 1-loop amplitude
+\begin{align}
+    I_5 = \int \frac{d^4lP(l)}{l^2(l-p_1)^2(l-p_1-p_2)^2(l+p_4 + p_5)^2(l + p_5)^2}
+\end{align}
+By transforming to dual Minkowski coordinates with variable $x_0$ and general dual vector $w$ we obtain the representation  \todo{coorrect}
+\begin{align}
+    I_5 = \int \frac{d^4x_0(x_0 - w)^2}{x_{10}^2x_{20}^2x_{30}^2x_{40}^2x_{50}^2}
+\end{align}
+Similarly as before, we can embed to 6-d light cone projective space (using (5)) to make the integrand manifestly DCI
+\begin{align}
+    I_5 = \int \frac{d^4x_0(x_0 - w)^2}{x_{10}^2x_{20}^2x_{30}^2x_{40}^2x_{50}^2} = \int \frac{d^6X_0(X_0,W)}{Vol(GL(1))(X_1,X_0)(X_2,X_0)(X_3,X_0)(X_4,X_0)(X_5,X_0)}
+\end{align}
+\todo{correct}
+From (27) (sum over $i$ is understood)
+\begin{align}
+    W = c_iX_i + rR \implies (X_0,W) = c_{i}(X_0,X_i) + r(X_0,R)
+\end{align}
+which gives
+\begin{align}
+    I_5 = \int \frac{d^6X_0}{Vol(GL(1))}\frac{c_{i}(X_0,X_i) + r(X_0,R)}{(X_1,X_0)(X_2,X_0)(X_3,X_0)(X_4,X_0)(X_5,X_0)}
+\end{align}
+The coefficients of the base expansion can be expressed using the anti-symmetric product. For example, we can get $c_1$ as
+\begin{align}
+    W = c_1X_1 + c_2X_2 + c_3X_3 + c_4X_4 + c_5X_5 + rR
+\end{align}
+
+\begin{align}
+    \langle W X_2X_3X_4X_5R\rangle = \langle (c_1X_1 + c_2X_2 + c_3X_3 + c_4X_4 + c_5X_5 + rR) X_2X_3X_4X_5 \rangle
+\end{align}
+\begin{align}
+    \langle W X_2X_3X_4X_5R\rangle = \langle c_1 X_1X_2X_3X_4X_5R\rangle \implies c_1 = \frac{ \langle W X_2X_3X_4X_5R\rangle}{ \langle X_1X_2X_3X_4X_5R\rangle}
+\end{align}
+Similarly, for $c_2$
+\begin{align}
+    \langle W X_1X_3X_4X_5R\rangle = \langle c_2 X_2X_1X_3X_4X_5R\rangle \implies c_2 = \frac{ \langle W X_1X_3X_4X_5R\rangle}{ \langle X_2X_1X_3X_4X_5R\rangle}
+\end{align}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
